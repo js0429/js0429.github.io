@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Step Form</title>
+  <style>
+    .form-step {
+        display: none;
+    }
+    .form-step.active {
+        display: flex;          /* Flexbox 활성화 */
+      flex-direction: column; /* 요소들 세로로 배치 */
+      justify-content: center;/* 세로 방향 가운데 정렬 */
+      align-items: center;
+    }
+    #option {
+        width: 80%;
+        height: 50px;
+    }
+    #progress {
+        position: absolute;
+        margin-bottom: 17px;
+        appearance: none;
+        width: 80%;
+        height: 5px;
+      }
+      
+      #progress::-webkit-progress-bar {
+        background: #f0f0f0;
+        border-radius: 12px;
+        border: 1px solid #eeeeee;
+        overflow: hidden;
+      }
+
+      #progress::-webkit-progress-value {
+        background: #fdd4d6;
+        border-radius: 0px;
+      }
+  </style>
+</head>
+<body>
+    <progress
+      class="progress"
+      id="progress"
+      value="50"
+      min="0"
+      max="4"
+    ></progress>
+  <form id="multiStepForm">
+    <!-- Step 1 -->
+    <div class="form-step active">
+        <label for="name">Section1:</label>
+        
+        <h1>외향형과 내향형의 사람을 구분하는 질문을 작성하세요</h1>
+        
+        <button type="button" id="option">option-1</button>
+        <button type="button" id="option">optio1-2</button><br>
+
+        <input type="text" id="name" name="name" required>
+        <button type="button" id="nextStep">Next</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="form-step">
+      <label for="email">email:</label>
+      
+      <h1>외향형과 내향형의 사람을 구분하는 질문을 작성하세요</h1>
+      
+      <input type="email" id="email" name="email" required>
+      
+      <button type="button" id="option">option2-1</button>
+      <button type="button" id="option">option2-2</button><br>
+      
+      <button type="button" id="prevStep">Previous</button>
+      <button type="button" id="nextStep">Next</button>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="form-step">
+      <label for="age">Age:</label>
+      
+      <h1>계획형과 즉흥형의 사람을 구분하는 질문을 작성하세요</h1>
+
+      <button type="button" id="option">option3-1</button>
+      <button type="button" id="option">option3-2</button><br>
+
+      <button type="button" id="prevStep">Previous</button>
+      <button type="button" id="nextStep">Next</button>
+    </div>
+  </form>
+
+  <!-- Step 4 -->
+  <div class="form-step">
+    <label for="age">Age2:</label>
+    
+    <h1>계획형과 즉흥형의 사람을 구분하는 질문을 작성하세요222</h1>
+
+    <button type="button" id="option">option3-1</button>
+    <button type="button" id="option">option3-2</button><br>
+
+    <button type="button" id="prevStep">Previous</button>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+
+  <script>
+    const steps = document.querySelectorAll('.form-step');
+    const progressBar = document.querySelector('progress');
+    let currentStep = 0;
+
+    function showStep(stepIndex) {
+      steps.forEach((step, index) => {
+        step.classList.toggle('active', index === stepIndex);
+      });
+    }
+
+    document.querySelectorAll('#nextStep').forEach(button => {
+      button.addEventListener('click', () => {
+        if (currentStep < steps.length - 1) {
+          currentStep++;
+          showStep(currentStep);
+          progressBar.value=currentStep+1;
+        }
+      });
+    });
+
+    document.querySelectorAll('#prevStep').forEach(button => {
+      button.addEventListener('click', () => {
+        if (currentStep > 0) {
+          currentStep--;
+          showStep(currentStep);
+        }
+      });
+    });
+
+    const form = document.getElementById('multiStepForm');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      console.log(data); // 모든 폼 데이터를 출력
+      alert('Form submitted! Check the console for data.');
+      // 서버에 데이터 전송 예시 (AJAX 요청)
+      // fetch('/submit', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // }).then(response => response.json()).then(result => console.log(result));
+    });
+  </script>
+</body>
+</html>
