@@ -139,8 +139,8 @@
         
         <div id="text-area">외향형과 내향형의 사람을 구분하는 질문을 작성하세요</div>
         
-        <button type="button" class="w-btn" id="option">option-1</button>
-        <button type="button" class="w-btn" id="option">optio1-2</button><br>
+        <button type="button" class="w-btn" id="option">option1-1</button>
+        <button type="button" class="w-btn" id="option">option1-2</button>
         
     </div>
 
@@ -173,7 +173,6 @@
         <button type="button" id="nextStep">다음</button>
       </div>
     </div>
-  </form>
 
   <!-- Step 4 -->
   <div class="form-step">
@@ -186,12 +185,13 @@
 
     <div id="form-step-buttons">
       <button type="button" id="prevStep">이전</button>
-      <button type="button" id="nextStep">다음</button>
+      <button type="button" id="submit">제출</button>
     </div>
   </div>
 </form>
 
   <script>
+    var answer={};
     const steps = document.querySelectorAll('.form-step');
     const progressBar = document.querySelector('progress');
     let currentStep = 0;
@@ -209,7 +209,9 @@
         }, { once: true }); // 한번만 실행
     }
     document.querySelectorAll('#option').forEach(button => {
-      button.addEventListener('click', () => {
+      button.addEventListener('click', (event) => {
+        answer[currentStep+1]=event.target.innerText;
+        console.log(answer);
         if (currentStep < steps.length - 1) {
             animateButton(button, ()=>{
                 currentStep++
@@ -238,20 +240,54 @@
       });
     });
 
-    const form = document.getElementById('multiStepForm');
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
-      console.log(data); // 모든 폼 데이터를 출력
-      alert('Form submitted! Check the console for data.');
-      // 서버에 데이터 전송 예시 (AJAX 요청)
-      // fetch('/submit', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // }).then(response => response.json()).then(result => console.log(result));
+    document.querySelectorAll('#submit').forEach(button => {
+      button.addEventListener('click', () => {
+        check=1;
+      for (let i=1; i<5; i++) {
+        if (answer[i]==undefined) {
+          alert(i+"번 항목을 선택해주세요")
+          check=0;
+          break;
+        }
+      }
+      if (check) {
+        var ANSWER="";
+        for (let n in answer) {
+          ANSWER+="\n"+ answer[n];
+        }
+        alert(ANSWER);
+      }
+      });
     });
+    /*const form = document.getElementById('multiStepForm');
+    form.addEventListener('submit', (event) => {
+      check=1;
+      for (let i=1; i<5; i++) {
+        if (answer[i]==undefined) {
+          alert(i+"번 항목을 선택해주세요")
+          check=0;
+        }
+      }
+      if (check) {
+        event.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        console.log(data); // 모든 폼 데이터를 출력
+        console.log(answer);
+        var ANSWER="";
+        for (let n in answer) {
+          ANSWER+="\n"+ answer[n];
+        }
+        alert(ANSWER);
+        // 서버에 데이터 전송 예시 (AJAX 요청)
+        // fetch('/submit', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify(data),
+        // }).then(response => response.json()).then(result => console.log(result));
+        
+      }
+    });*/
   </script>
 </body>
 </html>
