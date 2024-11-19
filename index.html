@@ -42,6 +42,12 @@
             opacity: 0;
         }
     }
+    .container {
+      display: flex;
+      justify-content: center; /* 가로로 중앙 정렬 */
+      align-items: center; /* 세로로 중앙 정렬 */
+      height: 10px;
+    }
     .form-step {
         display: none;
     }
@@ -51,7 +57,12 @@
       justify-content: center;/* 세로 방향 가운데 정렬 */
       align-items: center;
     }
-    
+    #form-step-buttons {
+      display: flex;
+      justify-content: space-between; /* 양쪽 끝에 배치 */
+      gap: 10px; /* 버튼 사이 간격 */
+      margin-top: 20px;
+    }
     .w-btn {
     position: relative;
     border: none;
@@ -110,13 +121,17 @@
   </style>
 </head>
 <body>
+  <div class="container">
     <progress
       class="progress"
       id="progress"
       value="1"
       min="0"
       max="4"
-    ></progress><br>
+    ></progress>
+  </div>
+  <br>
+  
   <form id="multiStepForm">
     <!-- Step 1 -->
     <div class="form-step active">
@@ -137,9 +152,11 @@
       
       <button type="button" class="w-btn" id="option">option2-1</button>
       <button type="button" class="w-btn" id="option">option2-2</button><br>
+      <div id="form-step-buttons">
+        <button type="button" id="prevStep">이전</button>
+        <button type="button" id="nextStep">다음</button>
+      </div>
       
-      <button type="button" id="prevStep">이전</button>
-      <button type="button" id="nextStep">다음</button>
     </div>
 
     <!-- Step 3 -->
@@ -151,8 +168,10 @@
       <button type="button" class="w-btn" id="option">option3-1</button>
       <button type="button" class="w-btn" id="option">option3-2</button><br>
 
-      <button type="button" id="prevStep">이전</button>
-      <button type="button" id="nextStep">다음</button>
+      <div id="form-step-buttons">
+        <button type="button" id="prevStep">이전</button>
+        <button type="button" id="nextStep">다음</button>
+      </div>
     </div>
   </form>
 
@@ -165,8 +184,10 @@
     <button type="button" class="w-btn" id="option">option4-1</button>
     <button type="button" class="w-btn" id="option">option4-2</button><br>
 
-    <button type="button" id="prevStep">이전</button>
-    <button type="submit">Submit</button>
+    <div id="form-step-buttons">
+      <button type="button" id="prevStep">이전</button>
+      <button type="button" id="nextStep">다음</button>
+    </div>
   </div>
 </form>
 
