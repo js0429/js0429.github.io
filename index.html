@@ -3,21 +3,91 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-Step Form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+  <title>KimProject</title>
   <style>
+    body {
+        padding: 100px;
+        background: whitesmoke;
+    }
+    button.animate {
+        animation: grow-and-move 0.6s forwards ease-in-out;
+    }
+    button  {
+        position: relative;
+        border: none;
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-family: "paybooc-Light", sans-serif;
+        text-decoration: none;
+        font-weight: 600;
+        width: 9%;
+        background-color: #e1eef6;
+        color: black;
+    }
+    button:active {
+        transform: scale(0.95);
+        color:gray;
+    }
+
+    @keyframes grow-and-move {
+        0% {
+            transform: scale(1.05);
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+    }
     .form-step {
         display: none;
     }
     .form-step.active {
-        display: flex;          /* Flexbox 활성화 */
+      display: flex;          /* Flexbox 활성화 */ 
       flex-direction: column; /* 요소들 세로로 배치 */
       justify-content: center;/* 세로 방향 가운데 정렬 */
       align-items: center;
     }
-    #option {
-        width: 80%;
-        height: 50px;
+    
+    .w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    width: 80%;
+    height: 50px;
+    background-color: #ff5f2e;
+    color: #e1eef6;
     }
+    .w-btn:hover {
+    letter-spacing: 1px;
+    transform: scale(1.05);
+    cursor: pointer;
+    }
+
+    #text-area {
+        display: flex;
+        justify-content: center; /* 가로 가운데 정렬 */
+        align-items: center; /* 세로 가운데 정렬 */
+        font-family: "Nanum Gothic Coding", monospace;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 20pt;
+        width: 80%;
+        height: 200px;
+        text-align: center;
+    }
+
     #progress {
         position: absolute;
         margin-bottom: 17px;
@@ -34,43 +104,40 @@
       }
 
       #progress::-webkit-progress-value {
-        background: #fdd4d6;
+        background: #ff5f2e;
         border-radius: 0px;
       }
+
   </style>
 </head>
 <body>
     <progress
       class="progress"
       id="progress"
-      value="50"
+      value="1"
       min="0"
       max="4"
     ></progress>
   <form id="multiStepForm">
     <!-- Step 1 -->
     <div class="form-step active">
-        <label for="name">Section1:</label>
+        <label for="name">외형/내향</label>
         
-        <h1>외향형과 내향형의 사람을 구분하는 질문을 작성하세요</h1>
+        <div id="text-area">외향형과 내향형의 사람을 구분하는 질문을 작성하세요</div>
         
-        <button type="button" id="option">option-1</button>
-        <button type="button" id="option">optio1-2</button><br>
-
-        <input type="text" id="name" name="name" required>
-        <button type="button" id="nextStep">Next</button>
+        <button type="button" class="w-btn" id="option">option-1</button>
+        <button type="button" class="w-btn" id="option">optio1-2</button><br>
+        
     </div>
 
     <!-- Step 2 -->
     <div class="form-step">
-      <label for="email">email:</label>
+      <label for="email">공감/판단</label>
       
-      <h1>외향형과 내향형의 사람을 구분하는 질문을 작성하세요</h1>
+      <div id="text-area">공감형과 판단형의 사람을 구분하는 질문을 작성하세요</div>
       
-      <input type="email" id="email" name="email" required>
-      
-      <button type="button" id="option">option2-1</button>
-      <button type="button" id="option">option2-2</button><br>
+      <button type="button" class="w-btn" id="option">option2-1</button>
+      <button type="button" class="w-btn" id="option">option2-2</button><br>
       
       <button type="button" id="prevStep">Previous</button>
       <button type="button" id="nextStep">Next</button>
@@ -78,12 +145,12 @@
 
     <!-- Step 3 -->
     <div class="form-step">
-      <label for="age">Age:</label>
+      <label for="age">계획/즉흥</label>
       
-      <h1>계획형과 즉흥형의 사람을 구분하는 질문을 작성하세요</h1>
+      <div id="text-area">계획형과 즉흥형의 사람을 구분하는 질문을 작성하세요</div>
 
-      <button type="button" id="option">option3-1</button>
-      <button type="button" id="option">option3-2</button><br>
+      <button type="button" class="w-btn" id="option">option3-1</button>
+      <button type="button" class="w-btn" id="option">option3-2</button><br>
 
       <button type="button" id="prevStep">Previous</button>
       <button type="button" id="nextStep">Next</button>
@@ -92,12 +159,12 @@
 
   <!-- Step 4 -->
   <div class="form-step">
-    <label for="age">Age2:</label>
+    <label for="age">감각/상상</label>
     
-    <h1>계획형과 즉흥형의 사람을 구분하는 질문을 작성하세요222</h1>
+    <div id="text-area">감각형과 상상형의 사람을 구분하는 질문을 작성하세요</div>
 
-    <button type="button" id="option">option3-1</button>
-    <button type="button" id="option">option3-2</button><br>
+    <button type="button" class="w-btn" id="option">option4-1</button>
+    <button type="button" class="w-btn" id="option">option4-2</button><br>
 
     <button type="button" id="prevStep">Previous</button>
     <button type="submit">Submit</button>
@@ -114,22 +181,39 @@
         step.classList.toggle('active', index === stepIndex);
       });
     }
-
-    document.querySelectorAll('#nextStep').forEach(button => {
+    function animateButton(button, callback) {
+        button.classList.add('animate'); // 애니메이션 시작
+        button.addEventListener('animationend', () => {
+        button.classList.remove('animate'); // 애니메이션 종료 후 제거
+        callback(); // 콜백 함수 실행 (폼 변경)
+        }, { once: true }); // 한번만 실행
+    }
+    document.querySelectorAll('#option').forEach(button => {
       button.addEventListener('click', () => {
         if (currentStep < steps.length - 1) {
-          currentStep++;
-          showStep(currentStep);
-          progressBar.value=currentStep+1;
+            animateButton(button, ()=>{
+                currentStep++
+                showStep(currentStep);
+                progressBar.value=currentStep+1;
+            });
         }
       });
     });
-
+    document.querySelectorAll('#nextStep').forEach(button => {
+      button.addEventListener('click', () => {
+        if (currentStep < steps.length - 1) {
+            currentStep++
+            showStep(currentStep);
+            progressBar.value=currentStep+1;
+        }
+      });
+    });
     document.querySelectorAll('#prevStep').forEach(button => {
       button.addEventListener('click', () => {
         if (currentStep > 0) {
-          currentStep--;
-          showStep(currentStep);
+            currentStep--;
+            showStep(currentStep);
+            progressBar.value=currentStep+1;        
         }
       });
     });
