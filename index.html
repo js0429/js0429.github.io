@@ -347,6 +347,14 @@
       paragraph.classList.add('text-gray-700');
       paragraph.style="background-color:#EFF1FE"
       paragraph.textContent=results[category].description;
+
+      //다시하기 버튼
+      const centeredButton = document.createElement('div');
+      centeredButton.style="text-align: center";
+      const onemore = document.createElement('button');
+      onemore.onclick=function(){window.location.reload()};
+      onemore.textContent="다시 시작하기";
+      centeredButton.appendChild(onemore);
       // 구성 요소들을 합침
       contentDiv.appendChild(specialTitle);
       contentDiv.appendChild(list);
@@ -356,6 +364,7 @@
       resultDiv.appendChild(titleContainer);
       resultDiv.appendChild(centeredImg);
       resultDiv.appendChild(contentDiv);
+      resultDiv.appendChild(centeredButton);
       resultContainer.appendChild(resultDiv);
     }
     const results = {
