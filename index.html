@@ -216,7 +216,30 @@
 </div>
 </form>
 
-<div id="result-container"></div>
+<div id="result-container">
+  
+</div>
+<div id="link" style="display:none; text-align: center; background-color: #e1eef6">
+  <div className="text-sm text-gray-600 space-y-2">
+    <p>🔍 의학자와 관련된 더 자세한 정보가 궁금하다면?</p>
+    <a
+      href="https://www.handokmuseum.com/?&utm_source=hyadpr&utm_medium=digitalmedia&utm_campaign=team4"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-indigo-600 hover:underline block"
+    >
+      한독의약박물관 방문하기
+    </a>
+    <br>
+    <a
+      href="https://www.instagram.com/handok_creativity/profilecard/?igsh=MTRyam40bGVxaWVzNQ=="
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-indigo-600 hover:underline block"
+    >
+      <img src="./images/instagram.png" width="20px" height="20px"/>인스타그램에서 더 알아보기
+    </a>
+</div>
   <script>
     var answer={};
     const steps = document.querySelectorAll('.form-step');
@@ -446,7 +469,7 @@
           progressBar.remove();
           prgStatus.remove();
           showStep(currentStep+1);
-
+          document.getElementById('link').style.display = 'block';
           createResult(category);
         }  
     });
