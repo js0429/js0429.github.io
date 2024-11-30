@@ -142,6 +142,7 @@
       나와 닮은 의학자는 누구일까요? 🔬
     </h2>
     <div class="form-step active">
+        <br><br>
         <button type="button" class="w-btn" id="nextStep">테스트 시작!</button>
     </div>
   
@@ -318,13 +319,13 @@
       contentDiv.classList.add('space-y-4');
       
       // 특별한 점 제목
-      const specialTitle = document.createElement('h3');
+      const specialTitle = document.createElement('h4');
       specialTitle.classList.add('font-semibold');
       specialTitle.textContent = '✨ 특별한 점';
       
       // 목록
       const list = document.createElement('ul');
-      list.classList.add('list-disc', 'pl-5', 'space-y-2');
+      list.classList.add('list-disc', 'pl-5', 'space-y-2', 'text-lm');
       const points = [
        results[category].traits[0],
        results[category].traits[1],
@@ -337,13 +338,14 @@
       });
       
       // 어떤 분이셨나요? 제목
-      const whoTitle = document.createElement('h3');
-      whoTitle.classList.add('font-semibold', 'mt-4');
+      const whoTitle = document.createElement('h4');
+      whoTitle.classList.add('font-semibold', 'mt-4', 'text-lm');
       whoTitle.textContent = '🌟 어떤 분이셨나요?';
       
-      // 텍스트 내용 (빈 내용)
+      // 텍스트 내용
       const paragraph = document.createElement('p');
       paragraph.classList.add('text-gray-700');
+      paragraph.style="background-color:#EFF1FE"
       paragraph.textContent=results[category].description;
       // 구성 요소들을 합침
       contentDiv.appendChild(specialTitle);
