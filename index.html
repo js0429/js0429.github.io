@@ -232,7 +232,7 @@
     </a>
     <br>
     <a
-      href="https://www.instagram.com/handok_creativity/profilecard/?igsh=MTRyam40bGVxaWVzNQ=="
+      href="https://www.instagram.com/i_can_doyak?igsh=MWFyOGNkNHZxZHBwdA=="
       target="_blank"
       rel="noopener noreferrer"
       className="text-indigo-600 hover:underline block"
@@ -318,10 +318,10 @@
 
       const title = document.createElement('h3');
       title.classList.add('text-xl', 'font-bold', 'text-indigo-600');
-      title.textContent = `"${results[category].title}"`;
+      title.textContent = `${results[category].title}`;
       const title2 = document.createElement('h3');
       title2.classList.add('text-xl', 'font-bold', 'text-indigo-600',);
-      title2.textContent = `"${results[category].type}"유형 입니다!`;
+      title2.textContent = `'${results[category].type}'유형 입니다!`;
       titleContainer.appendChild(title);
       titleContainer.appendChild(title2);
       const img = document.createElement('img');
@@ -368,7 +368,6 @@
       // 텍스트 내용
       const paragraph = document.createElement('p');
       paragraph.classList.add('text-gray-700');
-      paragraph.style="background-color:#EFF1FE"
       paragraph.textContent=results[category].description;
 
       //다시하기 버튼
@@ -433,7 +432,7 @@
   },
   "BBBBB": {
     type: "허준",
-    title: "실용적인 치료의 달인",
+    title: "백성을 생각하는 의사",
     traits: [
       "실제 경험을 바탕으로 아픈 사람을 잘 치료해요",
       "누구나 쉽게 이해할 수 있게 설명하는 것을 좋아해요",
@@ -459,11 +458,12 @@
           }
           console.log(answer);
           let category="";
+          console.log(category);
           if (cnt==0) category="BBBBB";
           if (cnt==1) category="ABBBB";
           if (cnt==2) category="AABBB";
           if (cnt==3) category="AAABB";
-          if (cnt==4) category="AAAAB";
+          if (cnt==4) category="BBBBB";
           if (cnt==5) category="AAAAA";
           
           progressBar.remove();
